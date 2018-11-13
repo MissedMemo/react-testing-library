@@ -1,7 +1,6 @@
 const { test, expect } = require('../lib/testinglib');
+const { sum, subtract } = require('../client.js');
 
-const sum = (a,b) => a + b;
-const subtract = (a,b) => a - b;
 
 test( 'should sum values', () => {
   const result = sum(7,3);
