@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "lint": "eslint src"
+    "lint": "eslint badcode.js"
   },
   "dependencies": {
     "eslint": "^5.11.1"
