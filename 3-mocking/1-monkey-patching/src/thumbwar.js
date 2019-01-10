@@ -1,4 +1,4 @@
-const playRound = require('./utils')
+const utils = require('./utils')
 
 const pointsNeeded = 2
 
@@ -8,7 +8,7 @@ const thumbwar = (player1, player2) => {
   let pts2 = 0
 
   while( pts1 < pointsNeeded && pts2 < pointsNeeded ) {
-    winner = playRound( player1, player2 )
+    winner = utils.playRound( player1, player2 )
     if ( winner ) { // not a tie
       if ( winner === player1 ) {
         pts1++
