@@ -1,5 +1,8 @@
 {
   "scripts": {
     "test": "node test/thumbwar.test.js"
+  },
+  "devDependencies": {
+    "jest": "^23.6.0"
   }
 }
