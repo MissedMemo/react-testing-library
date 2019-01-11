@@ -1,9 +1,10 @@
 const thumbwar = require('../src/thumbwar')
 const utils = require('../src/utils')
 
-test('return a winner (using JEST\'S fn wrapper)', () => {
-  const originalMethod = utils.playRound
-  utils.playRound = jest.fn( (p1,p2) => p1 )
+test('return a winner (using jest.spyOn)', () => {
+
+  jest.spyOn( utils, 'playRound' )
+  utils.playRound.mockImplementation( (p1,p2) => p1 )
 
   const winner = thumbwar('john', 'sarah')
 
@@ -19,22 +20,29 @@ test('return a winner (using JEST\'S fn wrapper)', () => {
     [ 'john', 'sarah' ]
   ])
 
-  utils.playRound = originalMethod
+  utils.playRound.mockRestore()
 })
 
-test('return a winner (using a CUSTOM fn wrapper)', () => {
+test('return a winner (using CUSTOM implementation of spyOn)', () => {
 
-  const fnWrapper = fn => {
-    const fnMock = (...args) => {
-      fnMock.mock.calls.push(args)
-      return fn(...args)
+  const fn = ( mockFunction = () => {} ) => {
+    const wrapper = (...args) => {
+      wrapper.mock.calls.push(args)
+      return mockFunction(...args)
     }
-    fnMock.mock = { calls: [] }
-    return fnMock
+    wrapper.mock = { calls: [] }
+    wrapper.substitute = replacement => (mockFunction = replacement)
+    return wrapper
   }
 
-  const originalMethod = utils.playRound
-  utils.playRound = fnWrapper( (p1,p2) => p1 )
+  const fnSpy = ( obj, prop ) => {
+    const origFunction = obj[prop]
+    obj[prop] = fn()
+    obj[prop].restore = () => { obj[prop] = origFunction }
+  }
+
+  fnSpy( utils, 'playRound' )
+  utils.playRound.substitute( (p1,p2) => p1 )
 
   const winner = thumbwar('john', 'sarah')
 
@@ -44,5 +52,5 @@ test('return a winner (using a CUSTOM fn wrapper)', () => {
     [ 'john', 'sarah' ]
   ])
 
-  utils.playRound = originalMethod
+  utils.playRound.restore()
 })
