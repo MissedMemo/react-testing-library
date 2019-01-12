@@ -1,25 +1,39 @@
+const utilsPath = require.resolve('../src/utils')
+
+const fn = ( mockFunction ) => {
+  const wrapper = (...args) => {
+    wrapper.mock.calls.push(args)
+    return mockFunction(...args)
+  }
+  wrapper.mock = { calls: [] }
+  return wrapper
+}
+
+require.cache[utilsPath] = {
+  id: utilsPath,
+  filename: utilsPath,
+  loaded: true,
+  exports : {
+    playRound: fn( (p1,p2) => p1 )
+  }
+}
+
 const thumbwar = require('../src/thumbwar')
 const utils = require('../src/utils')
 
-jest.mock( '../src/utils', () => ({
-  playRound: jest.fn( (p1,p2) => p1 )
-}))
-
-test('return a winner (using jest.mock)', () => {
+test('return a winner (using custom re-implementation of jest.mock)', () => {
 
   const winner = thumbwar('john', 'sarah')
 
-  expect( winner ).toBe('john')
-  expect( utils.playRound ).toHaveBeenCalledTimes(2)
-  expect( utils.playRound ).toHaveBeenCalledWith( 'john', 'sarah' )
-
-  // these are identical...
-  expect( utils.playRound ).toHaveBeenNthCalledWith( 1, 'john', 'sarah' )
-  expect( utils.playRound ).toHaveBeenNthCalledWith( 2, 'john', 'sarah' )
+  //expect( winner ).toBe('john')
+  console.log( 'winner:', utils.playRound )
+  console.log( 'utils.playRound:', utils.playRound )
+  /*
   expect( utils.playRound.mock.calls ).toEqual([
     [ 'john', 'sarah' ],
     [ 'john', 'sarah' ]
   ])
-
-  utils.playRound.mockReset()
+  */
 })
+
+delete require.cache[utilsPath]
