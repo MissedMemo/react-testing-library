@@ -1,6 +1,4 @@
-const utilsPath = require.resolve('../src/utils')
-
-const fn = ( mockFunction ) => {
+const fn = ( mockFunction = () => {} ) => {
   const wrapper = (...args) => {
     wrapper.mock.calls.push(args)
     return mockFunction(...args)
@@ -9,31 +7,32 @@ const fn = ( mockFunction ) => {
   return wrapper
 }
 
+const utilsPath = require.resolve('../src/utils')
+
 require.cache[utilsPath] = {
   id: utilsPath,
   filename: utilsPath,
   loaded: true,
-  exports : {
+  exports: {
     playRound: fn( (p1,p2) => p1 )
   }
 }
 
+const assert = require('assert')
 const thumbwar = require('../src/thumbwar')
 const utils = require('../src/utils')
 
-test('return a winner (using custom re-implementation of jest.mock)', () => {
+const winner = thumbwar('john', 'sarah')
 
-  const winner = thumbwar('john', 'sarah')
-
-  //expect( winner ).toBe('john')
-  console.log( 'winner:', utils.playRound )
-  console.log( 'utils.playRound:', utils.playRound )
-  /*
-  expect( utils.playRound.mock.calls ).toEqual([
+try {
+  assert.strictEqual( winner, 'john' )
+  assert.deepStrictEqual( utils.playRound.mock.calls, [
     [ 'john', 'sarah' ],
     [ 'john', 'sarah' ]
   ])
-  */
-})
+  console.log('success!')
+} catch(e) {
+  console.log('error:', e.message )
+}
 
 delete require.cache[utilsPath]
