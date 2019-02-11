@@ -1,3 +1,6 @@
-test( 'meaningless', () => {
-  expect(1+1).toBe(2)
+import { sum } from '../src/stuff'
+
+test( 'sum', () => {
+  const result = sum( [1,2,3,4,5])
+  expect(result).toBe(15)
 })
