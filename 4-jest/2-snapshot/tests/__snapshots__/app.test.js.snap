@@ -2,8 +2,6 @@
 
 exports[`renders with expected layout 1`] = `
 <div>
-  <div>
-    yowza!
-  </div>
+  yowza!
 </div>
 `;

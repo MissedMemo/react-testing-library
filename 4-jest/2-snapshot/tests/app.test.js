@@ -5,5 +5,5 @@ import App from '../src/app'
 
 test( 'renders with expected layout', () => {
   const { container } = render(<App greeting='yowza!' />)
-  expect(container).toMatchSnapshot()
+  expect(container.firstChild).toMatchSnapshot() // (firstChild skips snapshotting <div> wrapper)
 })
