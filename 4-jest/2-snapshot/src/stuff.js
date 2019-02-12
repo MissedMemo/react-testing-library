@@ -1,0 +1,1 @@
+export const sum = list => list.reduce( (total,n) => total +n )
