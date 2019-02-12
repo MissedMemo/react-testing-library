@@ -1,5 +1,9 @@
+import 'react-testing-library/cleanup-after-each'
+import React from 'react'
+import { render } from 'react-testing-library'
 import App from '../src/app'
 
 test( 'renders with expected layout', () => {
-  expect(1 +1).toBe(2)
+  const { container } = render(<App greeting='yowza!' />)
+  expect(container).toMatchSnapshot()
 })
