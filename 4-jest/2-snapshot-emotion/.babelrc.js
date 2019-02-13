@@ -9,3 +9,6 @@ module.exports = {
     }]
   ]
 }
+
+// IMPORTANT: adding babel-plugin-emotion is HIGHLY recommended!
+// (see https://github.com/emotion-js/emotion/tree/master/packages/babel-plugin-emotion )
