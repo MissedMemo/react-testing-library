@@ -7,6 +7,9 @@ module.exports = {
       "loose": true,
       "modules": isTest ? 'commonjs' : false
     }]
+  ],
+  "plugins": [
+    "@babel/plugin-proposal-class-properties"
   ]
 }
 

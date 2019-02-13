@@ -5,13 +5,21 @@ import React from 'react'
 import FavNum1 from './favnum-class-based'
 import FavNum2 from './favnum-hook-based'
 
-const stylin = css`
-  text-align: centered;
-  font-size: 24px;
-  color: blue;
+const appStyle = css`
+  display: flex;
+  justify-content: center;
 `
 
-export default () => <div css={stylin}>
-  <FavNum1 />
-  <FavNum2 />
+const containerStyle = css`
+  margin-top: 40px;
+  padding: 20px;
+  border: 2px solid lightgray;
+  border-radius: 3px;
+`
+
+export default () => <div css={appStyle}>
+  <div css={containerStyle}>
+    <FavNum1 />
+    <FavNum2 />
+  </div>
 </div>
