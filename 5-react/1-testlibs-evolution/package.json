@@ -1,7 +1,6 @@
 {
   "scripts": {
     "test": "jest",
-    "update-snapshots": "jest -u",
     "start": "webpack --mode development && node server"
   },
   "devDependencies": {
