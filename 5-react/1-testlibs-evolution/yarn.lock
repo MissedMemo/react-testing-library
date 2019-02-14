@@ -2085,6 +2085,16 @@ dom-testing-library@^3.13.1:
     pretty-format "^24.0.0"
     wait-for-expect "^1.1.0"
 
+dom-testing-library@^3.16.7:
+  version "3.16.7"
+  resolved "https://registry.yarnpkg.com/dom-testing-library/-/dom-testing-library-3.16.7.tgz#99490eeb7b2808463f2567c204e24bbd93bf921c"
+  integrity sha512-aa+uEArk6yeTtpkW8B4269cqaF4Kj7JhwlceK0UPABadz6ZGDdVYBXip4TSO/YSqdKc2KKmyp0ydaU93eM4AYA==
+  dependencies:
+    "@babel/runtime" "^7.1.5"
+    "@sheerun/mutationobserver-shim" "^0.3.2"
+    pretty-format "^24.0.0"
+    wait-for-expect "^1.1.0"
+
 domain-browser@^1.1.1:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/domain-browser/-/domain-browser-1.2.0.tgz#3d31f50191a6749dd1375a7f522e823d42e54eda"
