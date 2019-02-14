@@ -1,13 +1,6 @@
-import styled from '@emotion/styled'
 import React, { useState } from 'react'
+import { SpacedLabel } from './favnum-styles'
 
-const SpacedLabel = styled.label`
-  font-size: 24px;
-  color: blue;
-  :after {
-    content: ':  ';
-  }
-`
 
 const FavoriteNumber = ({min = 1, max = 9}) => {
 
