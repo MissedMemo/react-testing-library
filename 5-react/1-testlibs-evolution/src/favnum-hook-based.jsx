@@ -18,7 +18,7 @@ const FavoriteNumber = ({min = 1, max = 9}) => {
     <SpacedLabel htmlFor='numInput'>Favorite Number</SpacedLabel>
     <input type='number' id='numInput' value={number} onChange={handleChange} />
     {
-      isValid ? null : <div>Your number is invalid</div>
+      isValid ? null : <div data-testid='error-message'>Your number is invalid</div>
     }
   </div>
 }

@@ -27,7 +27,7 @@ class FavoriteNumber extends Component {
       <SpacedLabel htmlFor='numInput'>Favorite Number</SpacedLabel>
       <input type='number' id='numInput' value={number} onChange={this.handleChange} />
       {
-        isValid ? null : <div>Your number is invalid</div>
+        isValid ? null : <div data-testid='error-message'>Your number is invalid</div>
       }
     </div>
   }
