@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "test": "jest",
+    "test": "jest --watch",
     "start": "webpack --mode development && node server"
   },
   "dependencies": {
