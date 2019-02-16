@@ -1,0 +1,5 @@
+# shared by preset-env and autoprefixer (since babel 7)
+
+last 1 version
+not dead
+> 0.25%

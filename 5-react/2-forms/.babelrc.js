@@ -7,5 +7,6 @@ module.exports = {
       "modules": isTest ? 'commonjs' : false,
       "loose": true
     }]
-  ]
+  ],
+  "plugins": isTest ? ["@babel/transform-runtime"] : []
 }
