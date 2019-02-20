@@ -1,3 +1,8 @@
 import React from 'react'
+import GreetingLoader from './greeting-loader'
 
-export default ({ greeting }) => <>{ greeting }</>
+const App = () => <>
+  <GreetingLoader />
+</>
+
+export default App

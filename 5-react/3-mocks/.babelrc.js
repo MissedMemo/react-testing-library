@@ -8,5 +8,7 @@ module.exports = {
       loose: true
     }]
   ],
-  plugins: []
+  plugins: [
+    "@babel/plugin-proposal-class-properties"
+  ]
 }
