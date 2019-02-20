@@ -4,6 +4,6 @@ import { render } from 'react-dom'
 import App from './app'
 
 render(
-  <App greeting='Hi there!' />,
+  <App />,
   document.getElementById('root')
 )

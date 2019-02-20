@@ -9,9 +9,10 @@ class GreetingLoader extends Component {
     greeting: ''
   }
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault()
-    const greeting = `Hello, ${this.inputRef.current.value}`
+    const name = this.inputRef.current.value
+    const greeting = await loadGreeting(name)
     this.setState({greeting})
   }
 
