@@ -9,6 +9,12 @@ jest.mock( '../src/greeting-api', () => {
   }
 })
 
+jest.mock( '../src/greeting-api', () => {
+  return {
+    loadGreeting: jest.fn( subject => Promise.resolve(`Hello, ${subject}!`) )
+  }
+})
+
 test( 'should load greeting on click', async () => {
   const { getByLabelText, getByText, getByTestId } = render( <GreetingLoader /> )
   const input = getByLabelText( /name:/i )
