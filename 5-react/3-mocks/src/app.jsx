@@ -1,8 +1,10 @@
 import React from 'react'
-import GreetingLoader from './greeting-loader'
+import ClassBased_GreetingLoader from './greeting-loader-class'
+import HooksBased_GreetingLoader from './greeting-loader-class'
 
 const App = () => <>
-  <GreetingLoader />
+  <ClassBased_GreetingLoader />
+  <HooksBased_GreetingLoader />
 </>
 
 export default App
