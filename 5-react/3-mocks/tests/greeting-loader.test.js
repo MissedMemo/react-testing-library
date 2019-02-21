@@ -1,7 +1,7 @@
 import React from 'react'
-import { render, fireEvent, wait } from 'react-testing-library'
+import { render, fireEvent, wait, act } from 'react-testing-library'
 import ClassBased_GreetingLoader from '../src/greeting-loader-class'
-import HooksBased_GreetingLoader from '../src/greeting-loader-class'
+import HooksBased_GreetingLoader from '../src/greeting-loader-hooks'
 import { loadGreeting as mockLoadGreeting } from '../src/greeting-api'
 
 jest.mock( '../src/greeting-api', () => {
@@ -16,7 +16,7 @@ afterEach( () => { mockLoadGreeting.mock.calls = [] })
 describe( '<ClassBased_GreetingLoader />', () => {
 
   test( 'should load greeting on click', async () => {
-    const { getByLabelText, getByText, getByTestId } = render( <ClassBased_GreetingLoader /> )
+    const { getByLabelText, getByText, getByTestId } = render(  <ClassBased_GreetingLoader /> )
     const input = getByLabelText( /name:/i )
     const button = getByText( /submit/i )
     input.value = 'Joe'

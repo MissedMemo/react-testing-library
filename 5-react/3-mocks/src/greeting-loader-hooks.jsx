@@ -1,30 +1,25 @@
-import React, { Component, createRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { loadGreeting } from './greeting-api'
 
-class GreetingLoader extends Component {
+const GreetingLoader = () => {
 
-  inputRef = createRef()
+  const inputRef = useRef()
 
-  state = {
-    greeting: ''
-  }
-
-  handleSubmit = async e => {
+  const [greeting, setGreeting] = useState('')
+  
+  const handleSubmit = async e => {
     e.preventDefault()
-    const name = this.inputRef.current.value
+    const name = inputRef.current.value
     const greeting = await loadGreeting(name)
-    this.setState({greeting})
+    setGreeting(greeting)
   }
 
-
-  render() {
-    return <form onSubmit={this.handleSubmit}>
-      <label htmlFor='nameInput'>Name:</label>
-      <input id='nameInput' ref={ this.inputRef } />
-      <button type='submit'>Submit</button>
-      <div data-testid='greeting'>{ this.state.greeting }</div>
-    </form>
-  }
+  return <form onSubmit={handleSubmit}>
+    <label htmlFor='nameInput'>Name:</label>
+    <input id='nameInput' ref={ inputRef } />
+    <button type='submit'>Submit</button>
+    <div data-testid='greeting'>{ greeting }</div>
+  </form>
 }
 
 export default GreetingLoader
