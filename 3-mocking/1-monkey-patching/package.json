@@ -1,5 +1,0 @@
-{
-  "scripts": {
-    "test": "node test/thumbwar.test.js"
-  }
-}
