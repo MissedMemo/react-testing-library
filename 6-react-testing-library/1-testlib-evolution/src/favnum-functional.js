@@ -8,7 +8,7 @@ const FavoriteNumber = () => {
 
   return <>
     <label htmlFor="numInput">Favorite Number</label>
-    <input type="number" value={num} onChange={ handleChange } />
+    <input id="numInput" type="number" value={num} onChange={ handleChange } />
   </>
 }
 
