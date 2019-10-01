@@ -14,10 +14,10 @@ describe('traditional class-based component', () => {
   })
 
   test('entering invalid value displays error message', () => {
-    const { getByLabelText, getByTestId } = render( <FavNumClass /> )
+    const { getByLabelText, getByText } = render( <FavNumClass /> )
     const input = getByLabelText( /favorite number/i )
     fireEvent.change( input, { target: { value: 10}})
-    expect( getByTestId('error-message')).toHaveTextContent( /the number is invalid/i )
+    getByText( /the number is invalid/i ) // throws error if element with this text not found
   })
 })
 
