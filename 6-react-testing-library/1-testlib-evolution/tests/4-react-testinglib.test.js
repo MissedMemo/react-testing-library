@@ -8,7 +8,8 @@ import FavNumFunctional from '../src/favnum-functional'
 describe('traditional class-based component', () => {
 
   test('render input field with label', () => {
-    const { getByLabelText } = render( <FavNumClass /> )
+    const { getByLabelText, debug } = render( <FavNumClass /> )
+    debug()
     const input = getByLabelText( /favorite number/i )
     expect( input ).toHaveAttribute('type', 'number')
   })
@@ -17,8 +18,9 @@ describe('traditional class-based component', () => {
 describe('functional/hook-based component', () => {
   
   test('render input field with label', () => {
-    const { getByLabelText } = render( <FavNumFunctional /> )
+    const { getByLabelText, debug } = render( <FavNumFunctional /> )
     const input = getByLabelText( /favorite number/i )
+    debug(input)
     expect( input ).toHaveAttribute('type', 'number')
   })
 })
