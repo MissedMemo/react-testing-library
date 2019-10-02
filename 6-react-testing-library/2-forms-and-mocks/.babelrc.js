@@ -8,5 +8,8 @@ module.exports = {
     }],
     "@babel/preset-react"
   ],
-  plugins: ["@babel/plugin-transform-runtime"]
+  plugins: [
+    "@babel/transform-runtime",
+    "@babel/proposal-class-properties"
+  ]
 }
