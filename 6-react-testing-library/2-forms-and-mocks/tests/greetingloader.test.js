@@ -11,7 +11,7 @@ jest.mock( '../src/api', () => {
   }
 })
 
-afterEach( () => { mockLoadGreeting.mock.calls = [] })
+afterEach( () => { jest.clearAllMocks() })
 
 
 describe('class-based version of greetingloader', () => {
