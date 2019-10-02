@@ -1,13 +1,23 @@
-import React, { Component, useState, useRef } from 'react'
+import React, { Component, useState, useRef, useEffect } from 'react'
+import { loadGreeting } from './api'
 
 const GreetingLoader = props => {
 
   const [greeting, setGreeting] = useState('')
+  const [name, setName] = useState('')
   const inputRef = useRef()
+
+  useEffect( () => {
+    if ( name ) {
+      ( async () => {
+        setGreeting( await loadGreeting(name) )
+      })()
+    }
+  }, [ name ] )
 
   const handleSubmit = e => {
     e.preventDefault()
-    setGreeting( `Hello, ${ inputRef.current.value }` )
+    setName( inputRef.current.value )
   }
 
   return <form onSubmit={ handleSubmit }>

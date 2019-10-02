@@ -1,4 +1,5 @@
 import React, { Component, createRef } from 'react'
+import { loadGreeting } from './api'
 
 class GreetingLoader extends Component {
 
@@ -8,9 +9,9 @@ class GreetingLoader extends Component {
 
   inputRef = createRef()
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault()
-    const greeting = `Hello, ${ this.inputRef.current.value }`
+    const greeting = await loadGreeting( this.inputRef.current.value )
     this.setState({ greeting })
   }
 
