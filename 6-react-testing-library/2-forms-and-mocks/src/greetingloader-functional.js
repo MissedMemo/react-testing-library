@@ -1,7 +1,7 @@
 import React, { Component, useState, useRef, useEffect } from 'react'
 import { loadGreeting } from './api'
 
-const GreetingLoader = props => {
+const GreetingLoader = ({ loader = loadGreeting }) => {
 
   const [greeting, setGreeting] = useState('')
   const [name, setName] = useState('')
@@ -10,7 +10,7 @@ const GreetingLoader = props => {
   useEffect( () => {
     if ( name ) {
       ( async () => {
-        setGreeting( await loadGreeting(name) )
+        setGreeting( await loader(name) )
       })()
     }
   }, [ name ] )

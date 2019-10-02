@@ -7,11 +7,13 @@ class GreetingLoader extends Component {
     greeting: ''
   }
 
+  static defaultProps = { loadGreeting }
+
   inputRef = createRef()
 
   handleSubmit = async e => {
     e.preventDefault()
-    const greeting = await loadGreeting( this.inputRef.current.value )
+    const greeting = await this.props.loadGreeting( this.inputRef.current.value )
     this.setState({ greeting })
   }
 

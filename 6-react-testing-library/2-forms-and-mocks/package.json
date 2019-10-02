@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "test": "jest"
+    "test": "jest --verbose"
   },
   "dependencies": {
     "@babel/runtime": "^7.6.2",
