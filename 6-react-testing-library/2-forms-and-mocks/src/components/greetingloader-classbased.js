@@ -1,5 +1,5 @@
 import React, { Component, createRef } from 'react'
-import { loadGreeting } from './api'
+import { loadGreeting } from '../api'
 
 class GreetingLoader extends Component {
 

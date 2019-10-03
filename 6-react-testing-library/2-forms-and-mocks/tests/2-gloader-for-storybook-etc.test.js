@@ -2,8 +2,8 @@ import '@testing-library/jest-dom/extend-expect' // move to jest setup test fram
 
 import React from 'react'
 import { render, fireEvent, wait } from '@testing-library/react'
-import GreetingLoader_ClassBased from '../src/greetingloader-classbased'
-import GreetingLoader_Functional from '../src/greetingloader-functional'
+import GreetingLoader_ClassBased from '../src/components/greetingloader-classbased'
+import GreetingLoader_Functional from '../src/components/greetingloader-functional'
 
 const mockLoadGreeting = jest.fn( name => Promise.resolve(`Yowza, ${name}`) )
 

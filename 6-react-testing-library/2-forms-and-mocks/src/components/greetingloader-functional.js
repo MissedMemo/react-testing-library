@@ -1,5 +1,5 @@
 import React, { Component, useState, useRef, useEffect } from 'react'
-import { loadGreeting } from './api'
+import { loadGreeting } from '../api'
 
 const GreetingLoader = ({ loader = loadGreeting }) => {
 
