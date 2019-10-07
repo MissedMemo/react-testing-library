@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 
-import App from './components/hidden-message-app'
+import App from './components/error-boundary-app'
 
 render(
   <App />,
