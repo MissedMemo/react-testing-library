@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import './uses-3rd-party.css'
 
-const Fade = ({ children, ...props }) => {
-  return <CSSTransition {...props} timeout={1000} classNames="fade" >
-    { children }
+const Fade = ({children, ...props}) => (
+  <CSSTransition {...props} timeout={2000} classNames="fade" unmountOnExit >
+    {children}
   </CSSTransition>
-}
+)
 
 class HideTheKids extends Component {
   state = {
@@ -23,7 +23,7 @@ class HideTheKids extends Component {
       <button onClick={ this.toggle }>Toggle</button>
       <Fade in={ this.state.show }>
         <div className="kids">
-          { this.props.children }
+        { this.props.children }
         </div>
       </Fade>
     </div>
