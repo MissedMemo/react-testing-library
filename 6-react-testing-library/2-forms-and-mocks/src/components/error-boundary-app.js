@@ -1,13 +1,18 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import ErrorBoundary from './error-boundary'
 
 const BrokenComponent = () => {
 
-  const suicide = () => { throw Error('ich bin kaput!') }
+  const [broken, setBroken] = useState(false)
+
+  useEffect( () => {
+    if (broken) {
+      throw Error('ich bin kaput!')
+    }
+  }, [broken] )
 
   return <div>
-    Trying to render...
-    { suicide() }
+    <button onClick={ () => setBroken(true) }>Kill Me Now!</button>
   </div>
 }
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { reportError } from '../api'
 
 const errorStyles = {
   width: '100px',
@@ -17,13 +18,18 @@ class ErrorBoundary extends Component {
 
   componentDidCatch( error, info ) {
     this.setState({ hasError: true })
+    reportError( error, info )
+  }
+
+  retry = () => {
+    this.setState({ hasError: false })
   }
 
   render() {
     return this.state.hasError ? (
       <div style={ errorStyles }>
         <div>Whoops!</div>
-        <button>Re-Try!</button>
+        <button onClick={ this.retry }>Re-Try!</button>
       </div>
      ) : this.props.children
   }
