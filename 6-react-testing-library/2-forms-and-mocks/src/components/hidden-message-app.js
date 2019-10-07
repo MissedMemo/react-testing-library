@@ -1,12 +1,12 @@
 import React from 'react'
-import HideTheKids from '../components/uses-3rd-party-component'
+import HiddenMessage from './hidden-message'
 
 const message = 'Hi, There!'
 
 const App = () => (
-  <HideTheKids>
+  <HiddenMessage>
     { message }
-  </HideTheKids>
+  </HiddenMessage>
 )
 
 export default App

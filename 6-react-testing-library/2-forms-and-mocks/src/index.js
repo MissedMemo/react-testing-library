@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 
-import App from './clients/app-client3'
+import App from './components/hidden-message-app'
 
 render(
   <App />,

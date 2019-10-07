@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { CSSTransition } from 'react-transition-group'
-import './uses-3rd-party.css'
+import './hidden-message.css'
 
 const Fade = ({children, ...props}) => (
   <CSSTransition {...props} timeout={2000} classNames="fade" unmountOnExit >
@@ -8,7 +8,7 @@ const Fade = ({children, ...props}) => (
   </CSSTransition>
 )
 
-class HideTheKids extends Component {
+class HiddenMessage extends Component {
   state = {
     show: false
   }
@@ -22,7 +22,7 @@ class HideTheKids extends Component {
     return <div className="container">
       <button onClick={ this.toggle }>Toggle</button>
       <Fade in={ this.state.show }>
-        <div className="kids">
+        <div className="content">
         { this.props.children }
         </div>
       </Fade>
@@ -30,4 +30,4 @@ class HideTheKids extends Component {
   }
 }
 
-export default HideTheKids
+export default HiddenMessage
