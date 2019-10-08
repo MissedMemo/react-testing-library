@@ -3,7 +3,6 @@ import '@testing-library/jest-dom/extend-expect' // belongs in jest setup...
 import React from 'react'
 import { render, fireEvent } from '@testing-library/react'
 import ErrorBoundary from '../src/components/error-boundary'
-import { reportError as mockReportError } from '../src/api'
 
 beforeEach( () => {
   // temporarily override console error output to prevent extraneous warnings etc. on throw....
@@ -31,11 +30,10 @@ test('calls report error and registers a problem...', () => {
 
   const { container, rerender, getByText } = render( <ErrorBoundary><BadComponent /></ErrorBoundary> )
 
-  /*
   rerender( <ErrorBoundary>
     <BadComponent shouldThrow={true} />
   </ErrorBoundary> )
-    */
 
-  expect( mockReportError ).toHaveBeenCalledTimes(1)
+  //expect( mockReportError ).toHaveBeenCalledTimes(1)
+  expect(container).toHaveTextContent('Whoops!')
 })
