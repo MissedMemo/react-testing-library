@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom/extend-expect' // belongs in jest setup...
 
-import React from 'react'
+import React, { Component } from 'react'
 import { render, fireEvent } from '@testing-library/react'
 import { reportError as mockReportError } from '../src/api'
 import ErrorBoundary from '../src/components/error-boundary'
@@ -40,4 +40,10 @@ test('calls report error and registers a problem...', () => {
   expect(container).toHaveTextContent('Whoops!')
   expect(console.error).toHaveBeenCalledTimes(2) // once by JSDom & once by React
   expect( mockReportError ).toHaveBeenCalledTimes(1)
+
+  const error = expect.any(Error)
+  const info = { componentStack: expect.stringContaining("BOOM!") }
+  console.log({error})
+  console.log({info})
+  //expect( mockReportError ).toHaveBeenCalledWith( error )
 })
