@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 
 class FavNum extends Component {
+
+  static defaultProps = { min: 1, max: 9}
+
   state = {
-    number: 0
+    number: undefined
   }
 
   handleChange = ({ target }) => {
@@ -10,8 +13,11 @@ class FavNum extends Component {
   }
 
   render() {
+    
     const { number } = this.state
-    const isValid = number >= 1 && number <= 9
+    const { min, max } = this.props
+    const isValid = number !== undefined && number >= min && number <= max
+
     return <>
       <label htmlFor='favnum'>Favorite Number</label>
       <input id='favnum' type='number' onChange={this.handleChange} value={number} />

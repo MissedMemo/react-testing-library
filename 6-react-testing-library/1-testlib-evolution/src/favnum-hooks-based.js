@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 
-const FavNum = () => {
+const FavNum = ({ min = 1, max = 9}) => {
 
-  const [number, setNumber] = useState(0)
+  const [number, setNumber] = useState(undefined)
 
   const handleChange = ({ target }) => {
     setNumber( target.value )
   }
 
-  const isValid = number >= 1 && number <= 9
+  const isValid = number !== undefined && number >= min && number <= max
 
   return <>
     <label htmlFor='favnum'>Favorite Number</label>
