@@ -23,7 +23,7 @@ function getFullName(user: User): string {
 
 add(1, 2)
 
-getFullname({name: {first: 'Joe', middle: 'Bud', last: 'Matthews'}})
+getFullName({name: {first: 'Joe', middle: 'Bud', last: 'Matthews'}})
 
 /* Original version... (without TypeScript)
 
