@@ -1,0 +1,21 @@
+{
+  "scripts": {
+    "build": "babel src --extensions .js,.ts,.tsx --out-dir dist",
+    "lint": "eslint --ignore-path .gitignore src/",
+    "beautify": "prettier --ignore-path .gitignore \"**/*.+(js|json|ts|tsx)\"",
+    "format": "yarn beautify --write",
+    "check-format": "yarn beautify --list-different",
+    "check-types": "tsc",
+    "validate": "yarn check-types && yarn check-format && yarn lint"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.4",
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "@babel/preset-typescript": "^7.7.4",
+    "eslint": "^6.7.2",
+    "eslint-config-prettier": "^6.7.0",
+    "prettier": "^1.19.1",
+    "typescript": "^3.7.2"
+  }
+}
