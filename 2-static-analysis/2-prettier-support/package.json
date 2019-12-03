@@ -1,10 +1,14 @@
 {
   "scripts": {
     "lint": "eslint --ignore-path .gitignore .",
-    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|json)\""
+    "beautify": "prettier --ignore-path .gitignore \"**/*.+(js|json)\"",
+    "format": "yarn beautify --write",
+    "check-format": "yarn beautify --list-different",
+    "validate": "yarn check-format && yarn lint"
   },
   "devDependencies": {
     "eslint": "^6.7.2",
+    "eslint-config-prettier": "^6.7.0",
     "prettier": "^1.19.1"
   }
 }
