@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "lint": "eslint --ignore-path .gitignore .",
+    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|json)\""
+  },
+  "devDependencies": {
+    "eslint": "^6.7.2",
+    "prettier": "^1.19.1"
+  }
+}
