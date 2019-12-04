@@ -1,10 +1,4 @@
-// We can create OUR OWN implementation of jest.fn (test via: node tests/homegrowntest)
-
-const assert = require('assert')
-const utils = require('../src/utils')
-const ThumbWar = require('../src/thumbwar')
-
-//const fn = fnMock => (...args) => fnMock(...args)
+// We can create OUR OWN implementation of jest.mock, jest.fn etc. (test via: node tests/homegrowntest)
 
 const fn = ( impl = () => {} ) => {
   const mockFn = (...args) => {
@@ -16,14 +10,20 @@ const fn = ( impl = () => {} ) => {
   return mockFn
 }
 
-const spyOn = (api, method) => {
-  const originalImplementation = api[method]
-  api[method] = fn()
-  api[method].mockRestore = () => { api[method] = originalImplementation }
+const utilsPath = require.resolve('../src/utils')
+
+require.cache[utilsPath] = {
+  id: utilsPath,
+  filename: utilsPath,
+  loaded: true,
+  exports: {
+    calcWinner: fn( (p1,p2) => p2 )
+  }
 }
 
-spyOn( utils, 'calcWinner' )
-utils.calcWinner.mockImplementation( (p1,p2) => p2 )
+const assert = require('assert')
+const utils = require('../src/utils')
+const ThumbWar = require('../src/thumbwar')
 
 const winner = ThumbWar( "Bozo", "Tom" )
 
@@ -34,4 +34,4 @@ assert.deepStrictEqual( utils.calcWinner.mock.calls, [
   [ "Bozo", "Tom" ]
 ])
 
-utils.calcWinner.mockRestore()
+delete require.cache[utilsPath]
