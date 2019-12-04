@@ -1,4 +1,4 @@
-const utils = require('./utils')
+const { calcWinner } = require('./utils')
 
 const ThumbWar = (player1, player2) => {
 
@@ -11,7 +11,7 @@ const ThumbWar = (player1, player2) => {
 
   while ( wins[player1] < winsNeeded && wins[player2] < winsNeeded ) {
 
-    const winner = utils.calcWinner( player1, player2 )
+    const winner = calcWinner( player1, player2 )
 
     wins[winner]++
   }
