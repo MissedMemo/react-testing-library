@@ -1,4 +1,4 @@
-// We can create OUR OWN implementation of jest.fn (test via: node tests/home-grown.test)
+// We can create OUR OWN implementation of jest.fn (test via: node tests/homegrowntest)
 
 const assert = require('assert')
 const utils = require('../src/utils')
