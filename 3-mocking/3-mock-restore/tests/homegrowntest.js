@@ -6,17 +6,24 @@ const ThumbWar = require('../src/thumbwar')
 
 //const fn = fnMock => (...args) => fnMock(...args)
 
-const fn = impl => {
+const fn = ( impl = () => {} ) => {
   const mockFn = (...args) => {
     mockFn.mock.calls.push(args)
     return impl(...args)
   }
   mockFn.mock = { calls: [] }
+  mockFn.mockImplementation = newImpl => { impl = newImpl }
   return mockFn
 }
 
-const originalMethod = utils.calcWinner
-utils.calcWinner = fn( (p1,p2) => p2 )
+const spyOn = (api, method) => {
+  const originalImplementation = api[method]
+  api[method] = fn()
+  api[method].mockRestore = () => { api[method] = originalImplementation }
+}
+
+spyOn( utils, 'calcWinner' )
+utils.calcWinner.mockImplementation( (p1,p2) => p2 )
 
 const winner = ThumbWar( "Bozo", "Tom" )
 
@@ -27,4 +34,4 @@ assert.deepStrictEqual( utils.calcWinner.mock.calls, [
   [ "Bozo", "Tom" ]
 ])
 
-utils.calcWinner = originalMethod
+utils.calcWinner.mockRestore()
