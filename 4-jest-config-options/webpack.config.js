@@ -1,4 +1,4 @@
-const { resolve } = require('path')
+const {resolve} = require('path')
 const htmlWebpackPlugin = require('html-webpack-plugin')
 
 const SOURCE_DIR = resolve('src')
@@ -6,20 +6,24 @@ const SOURCE_DIR = resolve('src')
 module.exports = {
   output: {
     filename: 'bundle.js',
-    publicPath: '/'
+    publicPath: '/',
   },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
         include: SOURCE_DIR,
-        loader: 'babel-loader'
-      }
-    ]
+        loader: 'babel-loader',
+      },
+      {
+        test: /\.css$/,
+        loaders: ['style-loader', 'css-loader'],
+      },
+    ],
   },
   plugins: [
     new htmlWebpackPlugin({
-      template: 'webpack.index.html.template'
-    })
-  ]
+      template: 'webpack.index.html.template',
+    }),
+  ],
 }
