@@ -19,4 +19,4 @@ const FavoriteNumber = ({min = 1, max = 42}) => {
   </div>
 }
 
-export { FavoriteNumber }
+export default FavoriteNumber
