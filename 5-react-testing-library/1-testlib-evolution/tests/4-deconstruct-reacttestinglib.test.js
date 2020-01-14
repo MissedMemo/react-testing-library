@@ -1,16 +1,20 @@
 import React from 'react'
-import { render } from 'react-dom'
+import ReactDOM from 'react-dom'
 import { getQueriesForElement } from '@testing-library/dom'
 import FavHooks from '../src/favnum-hooks-based'
 import FavClass from '../src/favnum-class-based'
 
+const render = ui => {
+  const container = document.createElement('div')
+  ReactDOM.render( ui, container )
+  const queries = getQueriesForElement(container)
+  return { container, ...queries }
+}
 
 describe('test hooks-based component version', () => {
 
   test('renders number input with appropriate label', () => {
-    const div = document.createElement('div')
-    render( <FavHooks />, div )
-    const { getByLabelText } = getQueriesForElement(div)
+    const { getByLabelText } = render(<FavHooks />)
     const input = getByLabelText( /favorite number/i )
     expect(input).toHaveAttribute('type','number')
   })
@@ -20,9 +24,7 @@ describe('test hooks-based component version', () => {
 describe('test class-based component version', () => {
 
   test('renders number input with appropriate label', () => {
-    const div = document.createElement('div')
-    render( <FavClass />, div )
-    const { getByLabelText } = getQueriesForElement(div)
+    const { getByLabelText } = render(<FavClass />)
     const input = getByLabelText( /favorite number/i )
     expect(input).toHaveAttribute('type','number')
   })
