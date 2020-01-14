@@ -4,7 +4,7 @@ import user from '@testing-library/user-event'
 import FavHooks from '../src/favnum-hooks-based'
 import FavClass from '../src/favnum-class-based'
 
-const errorMsgFragment = /invalid/i
+const msgFragment = /invalid/i
 
 describe('test hooks-based component version', () => {
 
@@ -16,16 +16,20 @@ describe('test hooks-based component version', () => {
   })
 
   test('displays error on invalid input, with no error on valid input', () => {
-    const { getByLabelText, getByRole, queryByText, rerender } = render(<FavHooks />)
+    const { getByLabelText, getByText, queryByText, rerender } = render(<FavHooks />)
     const input = getByLabelText( /favorite number/i )
     
-    expect( queryByText( errorMsgFragment )).toBeFalsy()
+    expect( queryByText( msgFragment )).toBeNull()
 
-    fireEvent.change(input, {target: {value: '45'}})
-    expect( getByRole( /alert/i )).toHaveTextContent( errorMsgFragment )
+    // fireEvent.change(input, {target: {value: '45'}})
+    user.type( input, '45') // SUPERIOR to fireEvent (captures focus, keystrokes etc.)
+
+    //expect( getByRole( /alert/i )).toHaveTextContent( msgFragment ) // verbose syntax #1
+    //expect( getByText( msgFragment )).toBeInTheDocument // verbose syntax #2
+    getByText( msgFragment ) // PREFERRED syntax!
 
     rerender( <FavHooks max={45} />)
-    expect( queryByText( errorMsgFragment )).toBeFalsy()
+    expect( queryByText( msgFragment )).toBeNull()
   })
 })
 
@@ -40,16 +44,20 @@ describe('test class-based component version', () => {
   })
 
   test('displays error on invalid input, with no error on valid input', () => {
-    const { getByLabelText, getByRole, queryByText, rerender } = render(<FavClass />)
+    const { getByLabelText, queryByText, getByText, rerender } = render(<FavClass />)
     const input = getByLabelText( /favorite number/i )
     
-    expect( queryByText( errorMsgFragment )).toBeFalsy()
+    expect( queryByText( msgFragment )).toBeNull()
 
-    user.type( input, '45') //superior to fireEvent, to capture focus, keystrokes etc.
-    expect( getByRole( /alert/i )).toHaveTextContent( errorMsgFragment )
+    fireEvent.change(input, {target: {value: '45'}})
+    // user.type( input, '45') // SUPERIOR to fireEvent (captures focus, keystrokes etc.)
+
+    //expect( getByRole( /alert/i )).toHaveTextContent( msgFragment ) // verbose syntax #1
+    //expect( getByText( msgFragment )).toBeInTheDocument // verbose syntax #2
+    getByText( msgFragment ) // PREFERRED syntax!
 
     rerender( <FavClass max={45} />)
-    expect( queryByText( errorMsgFragment )).toBeFalsy()
+    expect( queryByText( msgFragment )).toBeNull()
   })
 
 })
