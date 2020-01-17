@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { issueGreeting } from '../src/greetingAPI'
+import { issueGreeting } from './greetingAPI'
 
 const GreetingLoader = () => {
 
