@@ -15,7 +15,7 @@ const FavoriteNumber = ({min = 1, max = 42}) => {
   return <div>
     <label htmlFor='favnum'>Favorite Number:</label>
     <input id='favnum' type='number' onChange={handleEdit} value={num} />
-    { isValid || <div role='alert'>That number is Invalid!</div> }
+    { isValid || <div role='alert'>Number is Invalid!</div> }
   </div>
 }
 
